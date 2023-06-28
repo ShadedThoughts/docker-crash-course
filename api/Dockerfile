@@ -1,6 +1,11 @@
 # This specifies the parent/base image which docker should use. In this case, a NodeJS that runs on an Alpine Linux
 FROM node:20-alpine3.17
 
+# Optional commands [Volumes]
+# The command is useful with volume mapping which maps volume on the host to the image working directory. Nodemon restarts the npm server when it notices any change in the volume or files
+# Once there's changes to files in volumes, nodemon (Node package) which is installed globally, restarts the server to reflect the changes automatically.
+RUN npm install -g nodemon
+
 # This tells docker the working directory. It also indicate where it should run the 'Phase 3' or any command.
 WORKDIR /app
 
@@ -19,13 +24,21 @@ COPY . .
 EXPOSE 4000
 
 # This is used to start the application. This command will run after the image has started running
-CMD ["node", "app.js"]
+# CMD ["node", "app.js"]
+
+# This command run the dev script inside the package.json file. However, we could also add scripts to Dockerfile itself
+CMD [ "npm", "run", "dev" ]
 
 ## Docker commands - https://stackify.com/docker-build-a-beginners-guide-to-building-docker-images/ and https://devopscube.com/build-docker-image/
-## > docker build --tag [name:tag] .
+## > docker build --tag [name:version] .
 ## > docker images
 ## > docker ps
-## > docker run --name [container_name] --publish [local_port:container_port] --detach [image_name]
+## > docker run --name [container_name] --publish [local_port:container_port] --detach image_name
 ## > docker stop [container_name]
 ## > docker ps -a
 ## > docker start [image_name]
+## > docker container rm [container_name]
+## > docker image rm [image_name]
+## > docker image rm [image_name] --force
+## > docker system prune -a [This deletes every image, containers and volumes]
+## > docker run --name [container_name] --publish [local_port:container_port] --detach --rm -v [absolute_local_path:image_path] -v /app/node_module image_name
