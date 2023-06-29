@@ -13,4 +13,5 @@ services:
     container_name: myblog_c
     ports:
       - '3000:3000'
-    stdin_open: true
+    stdin_open: true    # It is advisable to start React App in interactive mode on a container
+    tty: true
