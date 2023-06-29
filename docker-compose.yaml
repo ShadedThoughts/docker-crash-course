@@ -1,10 +1,10 @@
-version: "3.8"
-services:
-  api:
-    build: ./api
-    container_name: api_c
-    ports:
+version: "3.8"    # Version of the docker compose to use
+services:     # This will consist of the pojects we want containers for. It also lets docker know how to run each container to be created
+  api:        # This represents the API service which correspond to the "./api" folder
+    build: ./api    # The build property tells docker where to find the image to build for this container
+    container_name: api_c     # This signifies the container name
+    ports:    # This allows for port mapping
       - '4000:4000'
-    volumes:
+    volumes:  # This allows for volume mapping [localPath:imagePath]
       - ./api:/app
       - ./app/node_modules
