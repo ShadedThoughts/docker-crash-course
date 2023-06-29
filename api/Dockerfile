@@ -42,3 +42,7 @@ CMD [ "npm", "run", "dev" ]
 ## > docker image rm [image_name] --force
 ## > docker system prune -a [This deletes every image, containers and volumes]
 ## > docker run --name [container_name] --publish [local_port:container_port] --detach --rm -v [absolute_local_path:image_path] -v /app/node_modules image_name
+
+# Installing docker-compose using https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04
+## > docker-compose up
+## > docker-compose down --rmi all -v
