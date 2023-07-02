@@ -41,12 +41,22 @@ CMD [ "npm", "run", "dev" ]
 ## > docker container rm -f $(docker container ls -aq)
 ## > docker image rm [image_name]
 ## > docker image rm [image_name] --force
-## > docker image rm -f $(docker image ls -q)
+## > docker image rm -f $(docker image -q)
+## > docker attach [container_name]
 ## > docker system prune -a [This deletes every image, containers and volumes]
 ## > docker run --name [container_name] --publish [local_port:container_port] --detach --rm -v [absolute_local_path:image_path] -v /app/node_modules image_name
 
+## > docker network ls
+## > docker exec -it [container_id] sh
+## > docker exec -it [container_id] -u root api_c sh
+
 # Installing docker-compose using https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04
-## > docker-compose up
+## > docker-compose up --detach
+## > docker-compose up --detach --scale api=4
 ## > docker-compose down --rmi all -v
+## > docker-compse config
 
 ## https://github.com/daczarne/mosh_docker/tree/main/06_running_multicontainer_applications#creating-a-compose-file
+## https://gist.github.com/ju2wheels/3d1a1dfa498977874d03
+## https://manpages.ubuntu.com/manpages/xenial/man5/Dockerfile.5.html
+## https://docs.docker.com/compose/compose-file/compose-file-v3/ -- Reference
